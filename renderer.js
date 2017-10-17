@@ -34,6 +34,23 @@ function init() {
     //
     window.addEventListener( 'resize', onWindowResize, false );
 }
+function display(buckets) {
+    var material = new THREE.SpriteMaterial();
+    for (var i = 0; i < buckets.length; i++)
+    {
+        if (buckets[i] > 0)
+        {
+            var hsl = bucketToHsl(i);
+            particle = new THREE.Sprite( material );
+            particle.scale.y = 10;
+            particle.position.x = hsl[0] * SEPARATION - SEPARATION*SIZEH/2;
+            particle.position.z = hsl[1] * SEPARATION - SEPARATION*SIZES/2;
+            particle.position.z = hsl[2] * SEPARATION - SEPARATION*SIZEL/2;
+            scene.add( particle );
+        }
+    }
+}
+
 function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;

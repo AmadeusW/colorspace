@@ -5,6 +5,9 @@ window.onload = function(e) {
     init();
     animate();
 }
+var SIZEH = 36;
+var SIZES = 10;
+var SIZEL = 10;
 
 var loadImage = function() {
     console.log("loadImage");
@@ -17,14 +20,15 @@ var loadImage = function() {
         imageCanvas.width = image.width;
         imageCanvas.height=  image.height;
         context.drawImage(image, 0, 0);
-        console.log(processImage(context));
+        var buckets = processImage(context);
+        display(buckets);
     }
     image.src = document.getElementById('urlInput').value;
 }
 
 var processImage = function(context) {
     var imageData = context.getImageData(0, 0, 10, 10);
-    var buckets = new Array(10*10*36).fill(0);
+    var buckets = new Array(SIZEH*SIZES*SIZEL).fill(0);
     for (var pixel = 0; pixel < imageData.width * imageData.height; pixel += 4)
     {
         Record(buckets, imageData.data[pixel], imageData.data[pixel+1], imageData.data[pixel+2], imageData.data[pixel+3]);
@@ -45,10 +49,17 @@ var Record = function(buckets, r, g, b, a) {
 }
 
 var hslToBucket = function (hsl) {
-    var bucketH = Math.floor(hsl[0] * 36);
-    var bucketS = Math.floor(hsl[1] * 10);
-    var bucketL = Math.floor(hsl[2] * 10);
-    return bucketH * 10 * 10 + bucketS * 10 + bucketL
+    var bucketH = Math.floor(hsl[0] * SIZEH);
+    var bucketS = Math.floor(hsl[1] * SIZES);
+    var bucketL = Math.floor(hsl[2] * SIZEL);
+    return bucketH * SIZES * SIZEL + bucketS * SIZEL + bucketL
+}
+
+var bucketToHsl = function(bucket) {
+    var h = Math.floor(bucket / SIZES / SIZEL)
+    var s = Math.floor((bucket - h * SIZES * SIZEL) / SIZEL)
+    var l = Math.floor((bucket - h * SIZES * SIZEL - s * SIZEL))
+    return [h,s,l];
 }
 
 var rgbToHsl = function (r, g, b) {
