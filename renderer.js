@@ -34,15 +34,28 @@ function init() {
     //
     window.addEventListener( 'resize', onWindowResize, false );
 }
+var PI2 = Math.PI * 2;
+var circle = function ( context ) {
+    context.beginPath();
+    context.arc( 0, 0, 0.5, 0, PI2, true );
+    context.fill();
+};
 function display(buckets) {
-    var material = new THREE.SpriteMaterial();
     for (var i = 0; i < buckets.length; i++)
     {
         if (buckets[i] > 0)
         {
             var hsl = bucketToHsl(i);
+            var rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+            //var material = new THREE.SpriteMaterial();
+            var material = new THREE.SpriteCanvasMaterial({
+                color: rgbToHex(rgb[0],rgb[1],rgb[2]),
+                program: circle
+            });
             particle = new THREE.Sprite( material );
-            particle.scale.y = 10;
+            particle.scale.x = SEPARATION;
+            particle.scale.y = SEPARATION;
+            particle.scale.z = SEPARATION;
             particle.position.x = hsl[0] * SEPARATION - SEPARATION*SIZEH/2;
             particle.position.z = hsl[1] * SEPARATION - SEPARATION*SIZES/2;
             particle.position.z = hsl[2] * SEPARATION - SEPARATION*SIZEL/2;
