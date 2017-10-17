@@ -16,7 +16,7 @@ function init() {
     for ( var ix = 0; ix < AMOUNTX; ix++ ) {
         for ( var iy = 0; iy < AMOUNTY; iy++ ) {
             particle = new THREE.Sprite( material );
-            particle.scale.y = 20;
+            particle.scale.y = 2;
             particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
             particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
             scene.add( particle );
@@ -58,8 +58,8 @@ function display(buckets) {
             particle.scale.y = SEPARATION;
             particle.scale.z = SEPARATION;
             particle.position.x = hsl[0]*SIZEH * SEPARATION - SEPARATION*SIZEH/2;
-            particle.position.y = hsl[1]*SIZES * SEPARATION - SEPARATION*SIZES/2;
-            particle.position.z = hsl[2]*SIZEL * SEPARATION - SEPARATION*SIZEL/2;
+            particle.position.y = hsl[2]*SIZES * SEPARATION + SEPARATION*SIZES/2;
+            particle.position.z = hsl[1]*SIZEL * SEPARATION - SEPARATION*SIZEL/2;
             scene.add( particle );
         }
     }
