@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <title>title</title>
     <link rel="stylesheet" href="style.css">
-    <script src="three.min.js"></script>
+    <script src="lib/three.min.js"></script>
+    <script src="lib/stats.min.js"></script>
+    <script src="lib/Projector.js"></script>
+    <script src="lib/CanvasRenderer.js"></script>
     <script src="renderer.js"></script>
     <script src="imageProcessor.js"></script>
   </head>
@@ -21,4 +24,28 @@
     <div id="renderer"></div>
     <canvas id="imageCanvas"></canvas>
   </body>
+<!--
+  <script type="x-shader/x-vertex" id="vertexshader">
+    attribute float size;
+    attribute vec3 customColor;
+    varying vec3 vColor;
+    void main() {
+      vColor = customColor;
+      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+      gl_PointSize = size * ( 300.0 / -mvPosition.z );
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  </script>
+
+  <script type="x-shader/x-fragment" id="fragmentshader">
+    uniform vec3 color;
+    uniform sampler2D texture;
+    varying vec3 vColor;
+    void main() {
+      gl_FragColor = vec4( color * vColor, 1.0 );
+      gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+      if ( gl_FragColor.a < ALPHATEST ) discard;
+    }
+  </script>
+-->
 </html>

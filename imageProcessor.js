@@ -1,7 +1,9 @@
 window.onload = function(e) {
     console.log("onload");
     document.getElementById("okbutton").onclick = function() {loadImage()};
-    initializeRenderer();
+    // renderer.js:
+    init();
+    animate();
 }
 
 var loadImage = function() {
