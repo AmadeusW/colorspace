@@ -56,11 +56,10 @@ var hslToBucket = function (hsl) {
 }
 
 var bucketToHsl = function(bucket) {
-    var h = Math.floor(bucket / SIZES / SIZEL) / SIZEH
-    var s = Math.floor((bucket - h * SIZES * SIZEL) / SIZEL) / SIZES
-    var l = Math.floor((bucket - h * SIZES * SIZEL - s * SIZEL)) / SIZEL
-    console.log("Inverted bucket: ", bucket, h, s, l);
-    return [h,s,l];
+    var h = Math.floor(bucket / SIZES / SIZEL)
+    var s = Math.floor((bucket - h * SIZES * SIZEL) / SIZEL)
+    var l = Math.floor((bucket - h * SIZES * SIZEL - s * SIZEL))
+    return [h / SIZEH, s / SIZES , l / SIZEL];
 }
 
 var rgbToHsl = function (r, g, b) {
