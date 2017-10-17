@@ -47,6 +47,7 @@ function display(buckets) {
         {
             var hsl = bucketToHsl(i);
             var rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+            console.log("Display ", i, hsl, rgb);
             //var material = new THREE.SpriteMaterial();
             var material = new THREE.SpriteCanvasMaterial({
                 color: rgbToHex(rgb[0],rgb[1],rgb[2]),
