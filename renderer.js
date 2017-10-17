@@ -58,7 +58,7 @@ function display(buckets) {
             particle.scale.y = SEPARATION;
             particle.scale.z = SEPARATION;
             particle.position.x = hsl[0]*SIZEH * SEPARATION - SEPARATION*SIZEH/2;
-            particle.position.z = hsl[1]*SIZES * SEPARATION - SEPARATION*SIZES/2;
+            particle.position.y = hsl[1]*SIZES * SEPARATION - SEPARATION*SIZES/2;
             particle.position.z = hsl[2]*SIZEL * SEPARATION - SEPARATION*SIZEL/2;
             scene.add( particle );
         }
