@@ -22,7 +22,7 @@ function init() {
             scene.add( particle );
         }
     }
-    renderer = new THREE.CanvasRenderer();
+    renderer = new THREE.CanvasRenderer({alpha:true});
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.appendChild( renderer.domElement );

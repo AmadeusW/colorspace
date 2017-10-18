@@ -12,17 +12,19 @@
     <script src="imageProcessor.js"></script>
   </head>
   <body>
+    <header>
+      <div>
+        <label for="url">Image:</label>
+        <input id="urlInput" name="url" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"></input>
+      </div>
+      <div>
+        <input id="okbutton" type="submit" value="OK">
+      </div>
+    </header>
     <section>
-        <div>
-            <label for="url">Image:</label>
-            <input id="urlInput" name="url" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"></input>
-        </div>
-        <div>
-            <input id="okbutton" type="submit" value="OK">
-        </div>
+      <canvas id="imageCanvas"></canvas>
+      <div id="renderer"></div>
     </section>
-    <div id="renderer"></div>
-    <canvas id="imageCanvas"></canvas>
   </body>
 <!--
   <script type="x-shader/x-vertex" id="vertexshader">
