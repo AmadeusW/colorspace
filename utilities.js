@@ -5,6 +5,14 @@ var polarToCartesian = function(angle, radius) {
     }
 }
 
+var polarToCartesian3D = function(angleHorizontal, angleVertical, radius) {
+    return { 
+        y: Math.sin(angleVertical) * Math.sin(angleHorizontal) * radius,
+        x: Math.sin(angleVertical) * Math.cos(angleHorizontal) * radius,
+        z: Math.cos(angleVertical) * radius
+    }
+}
+
 var hslToBucket = function (hsl) {
     var bucketH = Math.floor(hsl[0] * SIZEH);
     var bucketS = Math.floor(hsl[1] * SIZES);
