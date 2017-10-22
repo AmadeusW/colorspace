@@ -36,8 +36,7 @@ function display(buckets) {
         {
             var hsl = bucketToHsl(i);
             var rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
-            //console.log("Display ", i, hsl, rgb);
-            //var material = new THREE.SpriteMaterial();
+
             var material = new THREE.SpriteCanvasMaterial({
                 color: rgbToHex(rgb[0],rgb[1],rgb[2]),
                 program: circle
@@ -53,7 +52,6 @@ function display(buckets) {
             // radius comes from saturation
             // Y-position comes from lightness
             var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, hsl[1] * 4);
-            //console.log(hueCoordinates);
             
             particle.position.x = hueCoordinates.x;
             particle.position.y = hsl[2]*5;
@@ -70,7 +68,6 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
-//
 function onDocumentMouseMove( event ) {
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;

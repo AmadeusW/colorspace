@@ -18,8 +18,6 @@ var loadImage = function(src) {
     console.log("loadImage");
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
-    //var renderingCanvas = document.getElementById("imageCanvas");
-    //var renderingContext = renderingCanvas.getContext('2d');
     var background = document.getElementById("background");
 
     var image = new Image();
@@ -30,25 +28,16 @@ var loadImage = function(src) {
         scaledHeight = image.height / 3;
         canvas.width = scaledWidth;
         canvas.height = scaledHeight;
-        //console.log("RenderingCanvas", renderingCanvas.width)
         renderingWidth = image.width;
         renderingHeight = image.height;
-        //renderingCanvas.width = renderingWidth;
-        //renderingCanvas.height = renderingHeight;
         console.log("Processing ", scaledWidth, scaledHeight);
         console.log("Rendering ", renderingWidth, renderingHeight);
-        // renderingCanvas.width and height is set by DOM
-        //renderingContext.drawImage(image, 0, 0, renderingWidth, renderingHeight);
         background.src = image.src;
 
         // canvas size must be set before calling drawImage
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         var buckets = processImage(context);
         display(buckets);
-
-        // after displaying buckets, darken the background image
-        //renderingContext.fillStyle = "rgba(0, 0, 0, 0.6)";
-        //renderingContext.fillRect(0, 0, renderingWidth, renderingHeight);
     }
     image.src = src;
 }
