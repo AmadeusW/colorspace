@@ -98,8 +98,9 @@ function animate() {
     stats.update();
 }
 function render() {
-    camera.position.x += ( mouseX - camera.position.x ) * .05;
-    camera.position.y += ( - mouseY - camera.position.y ) * .05;
+    camera.position.x = polarToCartesian(mouseX / (windowHalfX / Math.PI), 500).x;
+    camera.position.z = polarToCartesian(mouseX / (windowHalfX / Math.PI), 500).y;
+    camera.position.y = -30 + polarToCartesian(mouseY / (windowHalfY / Math.PI), 50).x;
     camera.lookAt( scene.position );
     renderer.render( scene, camera );
 }
