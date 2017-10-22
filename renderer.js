@@ -11,19 +11,6 @@ function init() {
     container = document.getElementById("renderer")
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
     scene = new THREE.Scene();
-    var material = new THREE.SpriteMaterial();
-    for ( var ix = 0; ix < AMOUNTX; ix++ ) {
-        for ( var iy = 0; iy < AMOUNTY; iy++ ) {
-            particle = new THREE.Sprite( material );
-            particle.scale.y = .2;
-            particle.scale.x = .1;
-            particle.scale.z = .1;
-            particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
-            particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
-            particle.position.y = -2;
-            scene.add( particle );
-        }
-    }
     renderer = new THREE.CanvasRenderer({alpha:true});
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
