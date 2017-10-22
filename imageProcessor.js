@@ -16,20 +16,30 @@ var scaledWidth, scaledHeight;
 
 var loadImage = function(src) {
     console.log("loadImage");
-    var imageCanvas = document.getElementById("imageCanvas");
+    var canvas = document.createElement("canvas");
     var context = imageCanvas.getContext('2d');
+    var renderingCanvas = document.getElementById("imageCanvas");
+    var renderingContext = imageCanvas.getContext('2d');
+
     var image = new Image();
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
         scaledWidth = image.width / 3;
         scaledHeight = image.height / 3;
-        imageCanvas.width = scaledWidth;
-        imageCanvas.height = scaledHeight;
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // renderingCanvas.width and height is set by DOM
+        renderingContext.drawImage(image, 0, 0, renderingCanvas.width, renderingCanvas.height);
+
         // canvas size must be set before calling drawImage
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         var buckets = processImage(context);
         display(buckets);
+
+        // after displaying buckets, darken the background image
+        renderingContext.fillStyle = "rgba(0, 0, 0, 0.4)";
+        renderingContext.fillRect(0, 0, scaledWidth, scaledHeight);
     }
     image.src = src;
 }

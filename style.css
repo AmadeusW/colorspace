@@ -1,5 +1,19 @@
+html {
+    overflow: hidden;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+}
+header {
+    flex-basis: auto;
+}
 section {
+    flex: 1; /* helps it grow */
     position: relative;
+    background-color: #333;
 }
 section canvas {
     position: absolute;
