@@ -11,6 +11,7 @@ window.onload = function(e) {
 var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
+var topBucketSize = 0;
 
 var loadImage = function(src) {
     console.log("loadImage");
@@ -23,7 +24,7 @@ var loadImage = function(src) {
         var scaledWidth = image.width / 5;
         var scaledHeight = image.height / 5;
         imageCanvas.width = scaledWidth;
-        imageCanvas.height=  scaledHeight;
+        imageCanvas.height = scaledHeight;
         // canvas size must be set before calling drawImage
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         var buckets = processImage(context);
@@ -49,4 +50,7 @@ var Record = function(buckets, r, g, b, a) {
     var bucketIndex = hslToBucket(hsl);
 
     buckets[bucketIndex] = buckets[bucketIndex] + 1;
+    if (buckets[bucketIndex] > topBucketSize) {
+        topBucketSize = buckets[bucketIndex]
+    }
 }

@@ -44,7 +44,7 @@ function display(buckets) {
             });
             particle = new THREE.Sprite( material );
             var saturationBasedScale = 0.3 + hsl[1] * 0.2;
-            var frequencyBasedScale = buckets[i] * 0.001;
+            var frequencyBasedScale = 0.15 + (buckets[i] / topBucketSize) * 0.35;
             var scale = frequencyBasedScale;
             particle.scale.x = scale;
             particle.scale.y = scale;
