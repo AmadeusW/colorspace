@@ -42,19 +42,18 @@ function display(buckets) {
                 program: circle
             });
             particle = new THREE.Sprite( material );
-            var saturationBasedScale = 0.3 + hsl[1] * 0.2;
-            var frequencyBasedScale = 0.15 + (buckets[i] / topBucketSize) * 0.35;
+            var frequencyBasedScale = 0.1 + (buckets[i] / topBucketSize) * 0.4;
             var scale = frequencyBasedScale;
             particle.scale.x = scale;
             particle.scale.y = scale;
             particle.scale.z = scale;
             // angle comes from hue
             // radius comes from saturation
-            // Y-position comes from lightness
+            // Y-position comes from lightness (and a bit from saturation)
             var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, hsl[1] * 4);
             
             particle.position.x = hueCoordinates.x;
-            particle.position.y = hsl[2]*5;
+            particle.position.y = hsl[2]*5  + hsl[1] * 0.5;
             particle.position.z = hueCoordinates.y;
             scene.add( particle );
         }
