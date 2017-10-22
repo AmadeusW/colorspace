@@ -44,9 +44,11 @@ function display(buckets) {
             });
             particle = new THREE.Sprite( material );
             var saturationBasedScale = 0.3 + hsl[1] * 0.2;
-            particle.scale.x = saturationBasedScale;
-            particle.scale.y = saturationBasedScale;
-            particle.scale.z = saturationBasedScale;
+            var frequencyBasedScale = buckets[i] * 0.001;
+            var scale = frequencyBasedScale;
+            particle.scale.x = scale;
+            particle.scale.y = scale;
+            particle.scale.z = scale;
             // angle comes from hue
             // radius comes from saturation
             // Y-position comes from lightness
