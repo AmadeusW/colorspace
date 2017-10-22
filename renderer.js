@@ -56,9 +56,10 @@ function display(buckets) {
                 program: circle
             });
             particle = new THREE.Sprite( material );
-            particle.scale.x = 0.4;
-            particle.scale.y = 0.4;
-            particle.scale.z = 0.4;
+            var saturationBasedScale = 0.3 + hsl[1] * 0.2;
+            particle.scale.x = saturationBasedScale;
+            particle.scale.y = saturationBasedScale;
+            particle.scale.z = saturationBasedScale;
             // angle comes from hue
             // radius comes from saturation
             // Y-position comes from lightness
