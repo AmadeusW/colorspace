@@ -43,7 +43,8 @@ function display(buckets) {
             });
             particle = new THREE.Sprite( material );
             var frequencyBasedScale = 0.1 + (buckets[i] / topBucketSize) * 0.4;
-            var scale = frequencyBasedScale;
+            var hybridScale = 0.2 * hsl[1] + (buckets[i] / topBucketSize) * 0.4;
+            var scale = hybridScale;
             particle.scale.x = scale;
             particle.scale.y = scale;
             particle.scale.z = scale;
@@ -53,7 +54,9 @@ function display(buckets) {
             var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, hsl[1] * 4);
             
             particle.position.x = hueCoordinates.x;
-            particle.position.y = hsl[2]*5  + hsl[1] * 0.5;
+            particle.position.y = hsl[2]*5  // Mostly based on lightness
+                                    + hsl[1] * 0.5 // A little tweak from saturation, for raising disk edges
+                                    + hsl[0] * 0.5; // a little kick from hue, for raising spiral arms
             particle.position.z = hueCoordinates.y;
             scene.add( particle );
         }
