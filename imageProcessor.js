@@ -6,7 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
-    loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
+    loadImage('samples/water-lilies-1919-2.jpg');
 }
 var SIZEH = 36;
 var SIZES = 10;

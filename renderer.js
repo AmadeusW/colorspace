@@ -55,9 +55,9 @@ function display(buckets) {
                 program: circle
             });
             particle = new THREE.Sprite( material );
-            particle.scale.x = SEPARATION;
-            particle.scale.y = SEPARATION;
-            particle.scale.z = SEPARATION;
+            particle.scale.x = 0.4;
+            particle.scale.y = 0.4;
+            particle.scale.z = 0.4;
             var hueCoordinates = polarToCartesian(hsl[0] * Math.PI, 1);
             console.log(hueCoordinates);    
             particle.position.x = hueCoordinates.x;
@@ -101,9 +101,9 @@ function animate() {
     stats.update();
 }
 function render() {
-    camera.position.x = polarToCartesian(mouseX / (windowHalfX / Math.PI), 50).x;
-    camera.position.z = polarToCartesian(mouseX / (windowHalfX / Math.PI), 50).y;
-    camera.position.y = -30 + polarToCartesian(mouseY / (windowHalfY / Math.PI), 50).x;
+    camera.position.x = polarToCartesian(mouseX / (windowHalfX / Math.PI), 20).x;
+    camera.position.z = polarToCartesian(mouseX / (windowHalfX / Math.PI), 20).y;
+    camera.position.y = 15 + polarToCartesian(mouseY / (windowHalfY / Math.PI), 15).x;
     camera.lookAt( scene.position );
     renderer.render( scene, camera );
 }
