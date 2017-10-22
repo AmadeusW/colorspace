@@ -6,7 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
-    loadImage('samples/water-lilies-1919-2.jpg');
+    loadImage('samples/munch.scream.jpg');
 }
 var SIZEH = 36;
 var SIZES = 10;
@@ -20,9 +20,12 @@ var loadImage = function(src) {
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
-        imageCanvas.width = image.width;
-        imageCanvas.height=  image.height;
-        context.drawImage(image, 0, 0);
+        var scaledWidth = image.width / 5;
+        var scaledHeight = image.height / 5;
+        imageCanvas.width = scaledWidth;
+        imageCanvas.height=  scaledHeight;
+        // canvas size must be set before calling drawImage
+        context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         var buckets = processImage(context);
         display(buckets);
     }
@@ -30,23 +33,20 @@ var loadImage = function(src) {
 }
 
 var processImage = function(context) {
-    var imageData = context.getImageData(0, 0, 10, 10);
+    var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
     var buckets = new Array(SIZEH*SIZES*SIZEL).fill(0);
     for (var pixel = 0; pixel < imageData.width * imageData.height; pixel += 4)
     {
         Record(buckets, imageData.data[pixel], imageData.data[pixel+1], imageData.data[pixel+2], imageData.data[pixel+3]);
-        console.log("===");
     }
     return buckets;
 }
 
 var Record = function(buckets, r, g, b, a) {
     if (a != 255) return;
-    console.log("Processing ",r,g,b)
 
     var hsl = rgbToHsl(r, g, b);
     var bucketIndex = hslToBucket(hsl);
 
-    console.log("HSL, bucket: ", hsl, bucketIndex);
     buckets[bucketIndex] = buckets[bucketIndex] + 1;
 }

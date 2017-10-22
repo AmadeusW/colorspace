@@ -20,6 +20,7 @@ function init() {
             particle.scale.z = .1;
             particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
             particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
+            particle.position.y = -2;
             scene.add( particle );
         }
     }
@@ -58,10 +59,14 @@ function display(buckets) {
             particle.scale.x = 0.4;
             particle.scale.y = 0.4;
             particle.scale.z = 0.4;
-            var hueCoordinates = polarToCartesian(hsl[0] * Math.PI, 1);
+            // angle comes from hue
+            // radius comes from saturation
+            // Y-position comes from lightness
+            var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, hsl[1] * 4);
             console.log(hueCoordinates);    
+            
             particle.position.x = hueCoordinates.x;
-            particle.position.y = hsl[2]*SIZES * SEPARATION + SEPARATION*SIZES/2;
+            particle.position.y = hsl[2]*4;
             particle.position.z = hueCoordinates.y;
             scene.add( particle );
         }
