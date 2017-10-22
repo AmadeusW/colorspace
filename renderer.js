@@ -54,7 +54,7 @@ function display(buckets) {
             console.log(hueCoordinates);    
             
             particle.position.x = hueCoordinates.x;
-            particle.position.y = hsl[2]*4;
+            particle.position.y = hsl[2]*5;
             particle.position.z = hueCoordinates.y;
             scene.add( particle );
         }
