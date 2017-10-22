@@ -15,8 +15,8 @@ function init() {
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.appendChild( renderer.domElement );
-    stats = new Stats();
-    container.appendChild( stats.dom );
+    //stats = new Stats();
+    //container.appendChild( stats.dom );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'touchstart', onDocumentTouchStart, false );
     document.addEventListener( 'touchmove', onDocumentTouchMove, false );
@@ -29,7 +29,13 @@ var circle = function ( context ) {
     context.arc( 0, 0, 0.5, 0, PI2, true );
     context.fill();
 };
+var resetScene = function() {
+    while(scene.children.length > 0){ 
+        scene.remove(scene.children[0]); 
+    }
+}
 function display(buckets) {
+    resetScene();
     for (var i = 0; i < buckets.length; i++)
     {
         if (buckets[i] > 0)

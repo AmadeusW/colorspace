@@ -13,6 +13,21 @@ var SIZES = 10;
 var SIZEL = 10;
 var topBucketSize = 0;
 var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
+var downscaling = 6;
+
+var increaseQuality = function() {
+    if (downscaling > 1)
+        downscaling--;
+    else
+        downscaling = 1;
+}
+
+var decreaseQuality = function() {
+    if (downscaling < 8)
+        downscaling++;
+    else
+        downscaling = 8;
+}
 
 var loadImage = function(src) {
     console.log("loadImage");
@@ -24,8 +39,8 @@ var loadImage = function(src) {
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
-        scaledWidth = image.width / 3;
-        scaledHeight = image.height / 3;
+        scaledWidth = image.width / downscaling;
+        scaledHeight = image.height / downscaling;
         canvas.width = scaledWidth;
         canvas.height = scaledHeight;
         renderingWidth = image.width;

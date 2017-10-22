@@ -9,6 +9,10 @@ body {
 }
 header {
     flex-basis: auto;
+    display: flex;
+}
+header > button {
+    width: 60px;
 }
 section {
     flex: 1; /* helps it grow */
