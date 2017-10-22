@@ -6,31 +6,43 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
-    loadImage('samples/water-lilies-1919-2.jpg');
+    loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
 }
 var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
 var topBucketSize = 0;
 var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
-var downscaling = 6;
+var downscaling = 5;
+var lastOpenedImage;
 
 var increaseQuality = function() {
     if (downscaling > 1)
         downscaling--;
     else
         downscaling = 1;
+
+    document.getElementById("qualityLabel").innerHTML = 10 - downscaling;
+    reloadImage();
 }
 
 var decreaseQuality = function() {
-    if (downscaling < 8)
+    if (downscaling < 9)
         downscaling++;
     else
-        downscaling = 8;
+        downscaling = 9;
+
+    document.getElementById("qualityLabel").innerHTML = 10 - downscaling;
+    reloadImage();
 }
 
+var reloadImage = function() {
+    loadImage(lastOpenedImage);
+}
 var loadImage = function(src) {
-    console.log("loadImage");
+    console.log("loadImage", src);
+
+    lastOpenedImage = src;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     var background = document.getElementById("background");

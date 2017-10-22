@@ -98,7 +98,7 @@ function onDocumentTouchMove( event ) {
 function animate() {
     requestAnimationFrame( animate );
     render();
-    stats.update();
+    //stats.update();
 }
 function render() {
     var coords = polarToCartesian3D(mouseX / (windowHalfX / 2 / Math.PI), mouseY / (windowHalfY / 2 / Math.PI), 10);

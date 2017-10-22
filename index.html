@@ -28,8 +28,12 @@
       <div>
         <input id="okbutton" type="submit" value="OK">
       </div>
-      <button onclick="decreaseQuality()" value="Lower quality"></button>
-      <button onclick="increaseQuality()" value="Higher quality"></button>
+      <div>
+        <span>Quality: </span>
+        <span id="qualityLabel">4</span>
+          <button onclick="decreaseQuality()" >Lower</button>
+          <button onclick="increaseQuality()" >Higher</button>
+      </div>
     </header>
     <section>
       <img id="background"></img>
