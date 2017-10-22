@@ -6,7 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
-    loadImage('samples/munch.scream.jpg');
+    loadImage('samples/water-lilies-1919-2.jpg');
 }
 var SIZEH = 36;
 var SIZES = 10;
@@ -21,8 +21,8 @@ var loadImage = function(src) {
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
-        var scaledWidth = image.width / 5;
-        var scaledHeight = image.height / 5;
+        var scaledWidth = image.width / 2;
+        var scaledHeight = image.height / 2;
         imageCanvas.width = scaledWidth;
         imageCanvas.height = scaledHeight;
         // canvas size must be set before calling drawImage
