@@ -12,6 +12,7 @@ var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
 var topBucketSize = 0;
+var scaledWidth, scaledHeight;
 
 var loadImage = function(src) {
     console.log("loadImage");
@@ -21,8 +22,8 @@ var loadImage = function(src) {
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
-        var scaledWidth = image.width / 2;
-        var scaledHeight = image.height / 2;
+        scaledWidth = image.width / 3;
+        scaledHeight = image.height / 3;
         imageCanvas.width = scaledWidth;
         imageCanvas.height = scaledHeight;
         // canvas size must be set before calling drawImage
@@ -34,7 +35,7 @@ var loadImage = function(src) {
 }
 
 var processImage = function(context) {
-    var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+    var imageData = context.getImageData(0, 0, scaledWidth, scaledHeight);
     var buckets = new Array(SIZEH*SIZES*SIZEL).fill(0);
     for (var pixel = 0; pixel < imageData.width * imageData.height; pixel += 4)
     {
