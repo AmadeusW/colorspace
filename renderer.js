@@ -49,7 +49,7 @@ function display(buckets) {
             });
             particle = new THREE.Sprite( material );
             var frequencyBasedScale = 0.1 + (buckets[i] / topBucketSize) * 0.4;
-            var hybridScale = 0.2 * hsl[1] + (buckets[i] / topBucketSize) * 0.5;
+            var hybridScale = (downscaling + 2) * 0.1 * hsl[1] + (buckets[i] / topBucketSize) * 0.5;
             var scale = hybridScale;
             particle.scale.x = scale;
             particle.scale.y = scale;

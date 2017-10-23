@@ -6,6 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
+    updateQualityUI();
     loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
 }
 var SIZEH = 36;
@@ -13,26 +14,30 @@ var SIZES = 10;
 var SIZEL = 10;
 var topBucketSize = 0;
 var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
-var downscaling = 5;
+var downscaling = 3;
 var lastOpenedImage;
 
+var updateQualityUI = function() {
+    document.getElementById("qualityLabel").innerHTML = "★".repeat(5-downscaling) + "☆".repeat(downscaling);
+}
+
 var increaseQuality = function() {
-    if (downscaling > 1)
+    if (downscaling > 0)
         downscaling--;
     else
-        downscaling = 1;
+        downscaling = 0;
 
-    document.getElementById("qualityLabel").innerHTML = 10 - downscaling;
+    updateQualityUI();
     reloadImage();
 }
 
 var decreaseQuality = function() {
-    if (downscaling < 9)
+    if (downscaling < 5)
         downscaling++;
     else
-        downscaling = 9;
+        downscaling = 5;
 
-    document.getElementById("qualityLabel").innerHTML = 10 - downscaling;
+    updateQualityUI();
     reloadImage();
 }
 
@@ -51,8 +56,8 @@ var loadImage = function(src) {
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
         console.log("loaded", e, image);
-        scaledWidth = image.width / downscaling;
-        scaledHeight = image.height / downscaling;
+        scaledWidth = image.width / Math.pow(2, downscaling);
+        scaledHeight = image.height / Math.pow(2, downscaling);
         canvas.width = scaledWidth;
         canvas.height = scaledHeight;
         renderingWidth = image.width;
