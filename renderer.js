@@ -1,14 +1,16 @@
 var SEPARATION = 1;
 var AMOUNTX = 50;
 var AMOUNTY = 50;
-var container, stats;
+var container, header;
 var camera, scene, renderer, particle;
 var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var darkening = true;
 
 function init() {
-    container = document.getElementById("renderer")
+    container = document.getElementById("renderer");
+    header = document.getElementById("header");
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
     scene = new THREE.Scene();
     renderer = new THREE.CanvasRenderer({alpha:true});
@@ -18,6 +20,7 @@ function init() {
     //stats = new Stats();
     //container.appendChild( stats.dom );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.addEventListener( 'click', onDocumentMouseDown, false );
     document.addEventListener( 'touchstart', onDocumentTouchStart, false );
     document.addEventListener( 'touchmove', onDocumentTouchMove, false );
     //
@@ -79,6 +82,13 @@ function onWindowResize() {
 function onDocumentMouseMove( event ) {
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;
+}
+function onDocumentMouseDown( event ) {
+    console.log(event.clientY, header.clientHeight);
+    if (event.clientY > header.clientHeight) {
+        darkening = !darkening;
+        background.style.opacity = darkening ? 0.3 : 1.0;
+    }
 }
 function onDocumentTouchStart( event ) {
     if ( event.touches.length > 1 ) {
