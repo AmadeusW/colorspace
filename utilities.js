@@ -7,9 +7,9 @@ var polarToCartesian = function(angle, radius) {
 
 var polarToCartesian3D = function(angleHorizontal, angleVertical, radius) {
     return { 
-        y: Math.abs(Math.sin(angleVertical)) * Math.sin(angleHorizontal) * radius,
-        x: Math.abs(Math.sin(angleVertical)) * Math.cos(angleHorizontal) * radius,
-        z: Math.cos(angleVertical) * radius
+        y: Math.abs(Math.cos(angleVertical)) * Math.sin(angleHorizontal) * radius,
+        x: Math.abs(Math.cos(angleVertical)) * Math.cos(angleHorizontal) * radius,
+        z: Math.sin(angleVertical) * radius
     }
 }
 

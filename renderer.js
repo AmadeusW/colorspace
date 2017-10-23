@@ -101,7 +101,7 @@ function animate() {
     //stats.update();
 }
 function render() {
-    var coords = polarToCartesian3D(mouseX / (windowHalfX / 2 / Math.PI), mouseY / (windowHalfY / 2 / Math.PI), 10);
+    var coords = polarToCartesian3D(mouseX / (windowHalfX /  Math.PI), mouseY / (windowHalfY * 2 /  Math.PI), 10);
     camera.position.x = coords.x;
     camera.position.z = coords.y;
     camera.position.y = coords.z;
