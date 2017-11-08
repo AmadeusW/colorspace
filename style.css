@@ -1,5 +1,6 @@
 html {
     overflow: hidden;
+    background-color: #111;
 }
 body {
     display: flex;
@@ -10,9 +11,19 @@ body {
 header {
     flex-basis: auto;
     display: flex;
+    margin: 2px 0;
 }
 header > button {
     width: 60px;
+}
+header > div {
+    padding: 0 2px;
+    border-right: 1px solid #444;
+    white-space: nowrap;
+}
+header > div img {
+    width: 64px;
+    height: 64px;
 }
 section {
     flex: 1; /* helps it grow */

@@ -44,6 +44,11 @@ var decreaseQuality = function() {
 var reloadImage = function() {
     loadImage(lastOpenedImage);
 }
+var loadImageFromAddress = function() {
+    var path = window.location.hash.substr(1);
+    console.log(path);
+    loadImage(path);
+}
 var loadImage = function(src) {
     console.log("loadImage", src);
 
