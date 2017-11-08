@@ -1,7 +1,7 @@
 window.onload = function(e) {
     console.log("onload");
     document.getElementById("okbutton").onclick = function() {
-        loadImage(document.getElementById('urlInput').value)
+        setWindowUrlAndLoadImage(document.getElementById('urlInput').value);
     };
     // renderer.js:
     init();
@@ -9,6 +9,18 @@ window.onload = function(e) {
     updateQualityUI();
     loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
 }
+
+var setWindowUrlAndLoadImage = function(url) {
+    if(history.pushState) {
+        history.pushState(null, null, '#'+url);
+    }
+    else {
+        location.hash = '#'+url;
+    }
+
+    loadImageFromAddress();
+}
+
 var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
