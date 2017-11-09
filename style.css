@@ -1,6 +1,7 @@
 html {
     overflow: hidden;
     background-color: #111;
+    color: #bbb;
 }
 body {
     display: flex;
@@ -13,18 +14,19 @@ header {
     display: flex;
     margin: 2px 0;
 }
-header > button {
-    width: 60px;
-}
 #sampleImages {
     display: flex;
 }
-#sampleImages > div {
+.headerButton {
     padding: 0 2px;
     border-right: 1px solid #444;
     white-space: nowrap;
 }
-header > div img {
+.dropdown {
+    /* TODO: display it when user clicks on parent element */
+    display: none;
+}
+.headerButton img {
     width: 64px;
     height: 64px;
 }
