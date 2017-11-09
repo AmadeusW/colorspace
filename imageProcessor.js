@@ -3,22 +3,12 @@ window.onload = function(e) {
     document.getElementById("okbutton").onclick = function() {
         var url = document.getElementById('urlInput').value;
         loadImage(url);
-        updateWindowUrl(url);
     };
     // renderer.js:
     init();
     animate();
     updateQualityUI();
     loadImageFromAddress();
-}
-
-var updateWindowUrl = function(url) {
-    if(history.pushState) {
-        history.pushState(null, null, '#'+url);
-    }
-    else {
-        location.hash = '#'+url;
-    }
 }
 
 var SIZEH = 36;
@@ -66,10 +56,19 @@ var loadImageFromAddress = function() {
     console.log("Loading " + path);
     loadImage(path);
 }
+var updateWindowUrl = function(url) {
+    if(history.pushState) {
+        history.pushState(null, null, '#'+url);
+    }
+    else {
+        location.hash = '#'+url;
+    }
+}
 var loadImage = function(src) {
     console.log("loadImage", src);
 
     lastOpenedImage = src;
+    updateWindowUrl(src);
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     var background = document.getElementById("background");

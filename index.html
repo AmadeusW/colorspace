@@ -18,7 +18,7 @@
     <header id="header">
       <div id="sampleImages">
         <div v-for="image in sampleImages">
-          <a :href="image.url | hash" onclick="loadImageFromAddress()">
+          <a :href="image.url | hash" v-on:click="loadImage(image.url)">
             <img :title="image.title" :src="image.url" />
           </a>
         </div>
