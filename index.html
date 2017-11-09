@@ -8,16 +8,20 @@
     <script src="lib/stats.min.js"></script>
     <script src="lib/Projector.js"></script>
     <script src="lib/CanvasRenderer.js"></script>
+    <script src="lib/vue.js"></script>
+
     <script src="utilities.js"></script>
     <script src="renderer.js"></script>
     <script src="imageProcessor.js"></script>
   </head>
   <body>
     <header id="header">
-      <div>
-        <a href="#samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" onclick="loadImageFromAddress()">
-          <img title="Still Life on Canvas" src="samples/A-24-elizabethmalarawieczorek15.jpg" />
-        </a>
+      <div id="sampleImages">
+        <div v-for="image in sampleImages">
+          <a :href="image.url | hash" onclick="loadImageFromAddress()">
+            <img :title="image.title" :src="image.url" />
+          </a>
+        </div>
       </div>
       <button onclick="loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg')" type="button">Starry Night</button>
       <button onclick="loadImage('samples/A-24-elizabethmalarawieczorek15.jpg')" type="button">Still Life on Canvas</button>
@@ -48,6 +52,7 @@
       <div id="renderer"></div>
     </section>
   </body>
+  <script src="startup.js"></script>
 <!--
   <script type="x-shader/x-vertex" id="vertexshader">
     attribute float size;

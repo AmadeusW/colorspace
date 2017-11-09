@@ -16,7 +16,10 @@ header {
 header > button {
     width: 60px;
 }
-header > div {
+#sampleImages {
+    display: flex;
+}
+#sampleImages > div {
     padding: 0 2px;
     border-right: 1px solid #444;
     white-space: nowrap;
