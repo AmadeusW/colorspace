@@ -17,26 +17,47 @@
   </head>
   <body>
     <header id="header">
+
       <div id="sampleImages">
-        <div v-for="image in sampleImages">
+        <div v-for="image in sampleImages" class="headerButton">
           <a :href="image.url | hash" v-on:click="loadImage(image.url)">
             <img :title="image.title" :src="image.url" />
           </a>
         </div>
       </div>
-      <div>
-        <label for="url">Image:</label>
-        <input id="urlInput" name="url" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"></input>
+
+      <div class="headerButton">
+        url
+        <div class="dropdown">
+          <label for="url">Image:</label>
+          <input id="urlInput" name="url" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"></input>
+        </div>
+        <div>
+          <input id="okbutton" type="submit" value="OK">
+        </div>
       </div>
-      <div>
-        <input id="okbutton" type="submit" value="OK">
+      
+      <div class="headerButton">
+        <span>Display: </span>
+        <div class="dropdown">
+
+          <div class="section">
+            <span>Resolution</span>
+            <span id="qualityLabel">4</span>
+            <button onclick="decreaseQuality()" >Lower</button>
+            <button onclick="increaseQuality()" >Higher</button>
+          </div>
+
+          <div class="section">
+            <span>Prominence</span>
+            <button onclick="toggleRadius()" >Saturation</button>
+            <button onclick="toggleDensity()" >Density</button>
+            <button onclick="toggleScarcity()" >Scarcity</button>
+          </div>
+        </div>
+        
       </div>
-      <div>
-        <span>Quality: </span>
-        <span id="qualityLabel">4</span>
-          <button onclick="decreaseQuality()" >Lower</button>
-          <button onclick="increaseQuality()" >Higher</button>
-      </div>
+
     </header>
     <section>
       <img id="background"></img>
