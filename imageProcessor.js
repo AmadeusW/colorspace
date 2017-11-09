@@ -6,6 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
+    // colorspace:
     updateQualityUI();
     loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
 }

@@ -17,13 +17,23 @@ function init() {
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.appendChild( renderer.domElement );
+
     //stats = new Stats();
     //container.appendChild( stats.dom );
+
+    
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    //controls.addEventListener( 'change', render ); // remove when using animation loop
+    // enable animation loop when using damping or autorotation
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = false;
+/*
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'click', onDocumentMouseDown, false );
     document.addEventListener( 'touchstart', onDocumentTouchStart, false );
     document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-    //
+*/
     window.addEventListener( 'resize', onWindowResize, false );
 }
 var PI2 = Math.PI * 2;
@@ -73,12 +83,13 @@ function display(buckets) {
 }
 
 function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
+    //windowHalfX = window.innerWidth / 2;
+    //windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
+/*
 function onDocumentMouseMove( event ) {
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;
@@ -104,17 +115,21 @@ function onDocumentTouchMove( event ) {
         mouseY = event.touches[ 0 ].pageY - windowHalfY;
     }
 }
+*/
 // TODO: figure out who's calling animate and how this got hooked up
 function animate() {
     requestAnimationFrame( animate );
-    render();
     //stats.update();
+    controls.update();
+    render();
 }
 function render() {
+    /*
     var coords = polarToCartesian3D(mouseX / (windowHalfX /  Math.PI), mouseY / (windowHalfY * 2 /  Math.PI), 10);
     camera.position.x = coords.x;
     camera.position.z = coords.y;
     camera.position.y = coords.z;
     camera.lookAt( scene.position );
+    */
     renderer.render( scene, camera );
 }
