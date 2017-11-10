@@ -1,5 +1,15 @@
 var sampleImages = new Vue({
     el: "#sampleImages",
+    methods: {
+        loadImage: function (src) {
+            loadImage(src);
+        }
+    },
+    filters: {
+        hash: function(value) {
+            return "#"+value;
+        }
+    },
     data: {
         sampleImages: [
             {
@@ -53,15 +63,5 @@ var sampleImages = new Vue({
                 url: "samples/Vincent_van_Gogh_-_Wheat_Field_with_Cypresses_-_Google_Art_Project.jpg"
             }
         ]
-    },
-    filters: {
-        hash: function(value) {
-            return "#"+value;
-        }
-    },
-    methods: {
-        loadImage: function (src) {
-            loadImage(src);
-        }
     }
 })
