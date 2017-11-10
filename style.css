@@ -24,6 +24,13 @@ header {
     white-space: nowrap;
     position: relative;
 }
+.headerButton > .icon {
+    font-size: 36px;
+    display: block;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
 .headerButton > .dropdown {
     display: none;
 }
