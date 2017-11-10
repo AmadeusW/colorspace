@@ -21,10 +21,21 @@ header {
     padding: 0 2px;
     border-right: 1px solid #444;
     white-space: nowrap;
+    position: relative;
+}
+.headerButton > .dropdown {
+    display: none;
+}
+.headerButton:hover > .dropdown {
+    display: block;
 }
 .dropdown {
-    /* TODO: display it when user clicks on parent element */
-    display: none;
+    background-color: #111;
+    border: 1px solid #444;
+    padding: 5px;
+    position: absolute;
+    top: 64px;
+    z-index: 1;
 }
 .headerButton img {
     width: 64px;
