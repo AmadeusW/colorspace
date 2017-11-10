@@ -18,7 +18,8 @@ header {
     display: flex;
 }
 .headerButton {
-    padding: 0 2px;
+    padding: 0 2px; /* horizontal padding */
+    margin: 2px 0;
     border-right: 1px solid #444;
     white-space: nowrap;
     position: relative;
@@ -32,10 +33,15 @@ header {
 .dropdown {
     background-color: #111;
     border: 1px solid #444;
-    padding: 5px;
     position: absolute;
     top: 64px;
     z-index: 1;
+}
+.dropdown > .section {
+    padding: 10px;
+}
+.dropdown > .section:not(:first-child) {
+    border-top: 1px solid #444;
 }
 .headerButton img {
     width: 64px;
