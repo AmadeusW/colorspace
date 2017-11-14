@@ -1,3 +1,27 @@
+var renderSettings = new Vue({
+    el: "#renderSettings",
+    methods: {
+        increaseQuality: function() {
+            this.downscaling = increaseQualityAndUpdate()
+        },
+        decreaseQuality: function() {
+            this.downscaling = decreaseQualityAndUpdate()
+        },
+        toggleRadius: () => toggleRadius(),
+        toggleDensity: () => toggleDensity(),
+        toggleScarcity: () => toggleScarcity(),
+        toggleDimming: () => toggleDimming(),
+    },
+    filters: {
+        stars: function(value) {
+            return "★".repeat(5-value) + "☆".repeat(value);
+        }
+    },
+    data: {
+        downscaling: 3,
+    }
+})
+
 var sampleImages = new Vue({
     el: "#sampleImages",
     methods: {

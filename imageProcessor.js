@@ -7,7 +7,6 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
-    updateQualityUI();
     loadImageFromAddress();
 }
 
@@ -19,28 +18,24 @@ var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
 var downscaling = 3;
 var lastOpenedImage;
 
-var updateQualityUI = function() {
-    document.getElementById("qualityLabel").innerHTML = "★".repeat(5-downscaling) + "☆".repeat(downscaling);
-}
-
-var increaseQuality = function() {
+var increaseQualityAndUpdate = function() {
     if (downscaling > 0)
         downscaling--;
     else
         downscaling = 0;
 
-    updateQualityUI();
     reloadImage();
+    return downscaling;
 }
 
-var decreaseQuality = function() {
+var decreaseQualityAndUpdate = function() {
     if (downscaling < 5)
         downscaling++;
     else
         downscaling = 5;
 
-    updateQualityUI();
     reloadImage();
+    return downscaling;
 }
 
 var reloadImage = function() {

@@ -40,15 +40,15 @@
         </div>
       </div>
       
-      <div class="headerButton">
+      <div class="headerButton" id="renderSettings">
         <span class="icon">⚙&#xFE0E;</span>
-        <div class="dropdown">
+        <div class="dropdown" id="renderSettings">
 
           <div class="section">
             <span>Resolution</span>
-            <span id="qualityLabel">4</span>
-            <button onclick="decreaseQuality()" >Lower</button>
-            <button onclick="increaseQuality()" >Higher</button>
+            <span id="qualityLabel">{{downscaling | stars}}</span>
+            <button v-on:click="decreaseQuality()" >Lower</button>
+            <button v-on:click="increaseQuality()" >Higher</button>
           </div>
 
           <div class="section">
