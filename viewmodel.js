@@ -10,7 +10,10 @@ var renderSettings = new Vue({
         toggleRadius: () => toggleRadius(),
         toggleDensity: () => toggleDensity(),
         toggleScarcity: () => toggleScarcity(),
-        toggleDimming: () => toggleDimming(),
+        toggleDimming: function() {
+            this.dimming = !this.dimming;
+            document.getElementById("background").style.opacity = this.dimming ? 0.3 : 1.0;
+        }
     },
     filters: {
         stars: function(value) {
@@ -19,6 +22,7 @@ var renderSettings = new Vue({
     },
     data: {
         downscaling: 3,
+        dimming: true
     }
 })
 

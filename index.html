@@ -59,8 +59,9 @@
           </div>
 
           <div class="section">
-              <span>Artwork</span>
-              <button onclick="toggleDimming()" >Dim</button>
+              <span>Artwork dimming</span>
+              <span>{{dimming}}</span>
+              <button v-on:click="toggleDimming()" >Toggle</button>
             </div>
         </div>
         
