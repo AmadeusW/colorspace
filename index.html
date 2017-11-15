@@ -32,7 +32,8 @@
         <div class="dropdown">
 
           <div class="section">
-            <label for="url">Image:</label>
+            <p class="sectionTitle">Load image from the web</p>
+            <label for="url">Address:</label>
             <input id="urlInput" name="url" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"></input>
             <input id="okbutton" type="submit" value="Load">
           </div>
@@ -45,22 +46,22 @@
         <div class="dropdown" id="renderSettings">
 
           <div class="section">
-            <span>Resolution</span>
+            <p class="sectionTitle">Resolution</p>
             <span id="qualityLabel">{{downscaling | stars}}</span>
             <button v-on:click="decreaseQuality()" >Lower</button>
             <button v-on:click="increaseQuality()" >Higher</button>
           </div>
 
           <div class="section">
-            <span>Prominence</span>
+            <p class="sectionTitle">Prominence</p>
             <button onclick="toggleRadius()" >Saturation</button>
             <button onclick="toggleDensity()" >Density</button>
             <button onclick="toggleScarcity()" >Scarcity</button>
           </div>
 
           <div class="section">
-              <span>Artwork dimming</span>
-              <span>{{dimming}}</span>
+              <p class="sectionTitle">Artwork dimming</p>
+              <span>{{dimming | dimmingText}}</span>
               <button v-on:click="toggleDimming()" >Toggle</button>
             </div>
         </div>

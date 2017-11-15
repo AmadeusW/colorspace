@@ -45,15 +45,21 @@ header {
     z-index: 1;
 }
 .dropdown > .section {
-    padding: 10px;
+    padding: 1em;
 }
 .dropdown > .section:not(:first-child) {
     border-top: 1px solid #444;
+}
+.sectionTitle {
+    font-weight: bold;
+    margin: 0 0 0.8em 0;
 }
 .headerButton img {
     width: 64px;
     height: 64px;
 }
+
+/* The main render area: */
 section {
     flex: 1; /* helps it grow */
     position: relative;
