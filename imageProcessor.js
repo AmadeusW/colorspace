@@ -1,14 +1,15 @@
 window.onload = function(e) {
     console.log("onload");
     document.getElementById("okbutton").onclick = function() {
-        loadImage(document.getElementById('urlInput').value)
+        var url = document.getElementById('urlInput').value;
+        loadImage(url);
     };
     // renderer.js:
     init();
     animate();
-    updateQualityUI();
-    loadImage('samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
+    loadImageFromAddress();
 }
+
 var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
@@ -17,37 +18,52 @@ var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
 var downscaling = 3;
 var lastOpenedImage;
 
-var updateQualityUI = function() {
-    document.getElementById("qualityLabel").innerHTML = "★".repeat(5-downscaling) + "☆".repeat(downscaling);
-}
-
-var increaseQuality = function() {
+var increaseQualityAndUpdate = function() {
     if (downscaling > 0)
         downscaling--;
     else
         downscaling = 0;
 
-    updateQualityUI();
     reloadImage();
+    return downscaling;
 }
 
-var decreaseQuality = function() {
+var decreaseQualityAndUpdate = function() {
     if (downscaling < 5)
         downscaling++;
     else
         downscaling = 5;
 
-    updateQualityUI();
     reloadImage();
+    return downscaling;
 }
 
 var reloadImage = function() {
     loadImage(lastOpenedImage);
 }
+var loadImageFromAddress = function() {
+    var path = window.location.hash.substr(1);
+    if (path === null || path === '')
+    {
+        console.log("Loading default image");
+        path = 'samples/1920px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg'
+    }
+    console.log("Loading " + path);
+    loadImage(path);
+}
+var updateWindowUrl = function(url) {
+    if(history.pushState) {
+        history.pushState(null, null, '#'+url);
+    }
+    else {
+        location.hash = '#'+url;
+    }
+}
 var loadImage = function(src) {
     console.log("loadImage", src);
 
     lastOpenedImage = src;
+    updateWindowUrl(src);
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     var background = document.getElementById("background");

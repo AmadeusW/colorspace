@@ -1,5 +1,7 @@
 html {
     overflow: hidden;
+    background-color: #111;
+    color: #bbb;
 }
 body {
     display: flex;
@@ -10,10 +12,63 @@ body {
 header {
     flex-basis: auto;
     display: flex;
+    margin: 2px 0;
 }
-header > button {
-    width: 60px;
+#sampleImages {
+    display: flex;
+    flex-shrink: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
+.headerButton {
+    padding: 0 2px; /* horizontal padding */
+    margin: 2px 0;
+    border-right: 1px solid #444;
+    white-space: nowrap;
+    position: relative;
+}
+.headerButton:hover {
+    background-color: #222;
+}
+.headerButton > .icon {
+    font-size: 36px;
+    display: block;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+.headerButton > .dropdown {
+    display: none;
+}
+.headerButton:hover > .dropdown {
+    display: block;
+}
+.dropdown {
+    background-color: #111;
+    border: 1px solid #444;
+    position: absolute;
+    top: 64px;
+    z-index: 1;
+}
+.dropdown > .section {
+    padding: 1em;
+}
+.dropdown > .section:not(:first-child) {
+    border-top: 1px solid #444;
+}
+.dropdown > .section:hover {
+    background-color: #222;
+}
+.sectionTitle {
+    font-weight: bold;
+    margin: 0 0 0.8em 0;
+}
+.headerButton img {
+    width: 64px;
+    height: 64px;
+}
+
+/* The main render area: */
 section {
     flex: 1; /* helps it grow */
     position: relative;

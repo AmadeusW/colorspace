@@ -20,7 +20,6 @@ function init() {
     //stats = new Stats();
     //container.appendChild( stats.dom );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    document.addEventListener( 'click', onDocumentMouseDown, false );
     document.addEventListener( 'touchstart', onDocumentTouchStart, false );
     document.addEventListener( 'touchmove', onDocumentTouchMove, false );
     //
@@ -82,13 +81,6 @@ function onWindowResize() {
 function onDocumentMouseMove( event ) {
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;
-}
-function onDocumentMouseDown( event ) {
-    console.log(event.clientY, header.clientHeight);
-    if (event.clientY > header.clientHeight) {
-        darkening = !darkening;
-        background.style.opacity = darkening ? 0.3 : 1.0;
-    }
 }
 function onDocumentTouchStart( event ) {
     if ( event.touches.length > 1 ) {
