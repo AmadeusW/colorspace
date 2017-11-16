@@ -16,6 +16,9 @@ header {
 }
 #sampleImages {
     display: flex;
+    flex-shrink: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 .headerButton {
     padding: 0 2px; /* horizontal padding */
