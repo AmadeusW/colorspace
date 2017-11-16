@@ -24,6 +24,9 @@ header {
     white-space: nowrap;
     position: relative;
 }
+.headerButton:hover {
+    background-color: #222;
+}
 .headerButton > .icon {
     font-size: 36px;
     display: block;
@@ -49,6 +52,9 @@ header {
 }
 .dropdown > .section:not(:first-child) {
     border-top: 1px solid #444;
+}
+.dropdown > .section:hover {
+    background-color: #222;
 }
 .sectionTitle {
     font-weight: bold;
