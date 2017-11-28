@@ -25,7 +25,6 @@ function init() {
     //stats = new Stats();
     //container.appendChild( stats.dom );
 
-    console.log("init");
     controls = new THREE.OrbitControls( camera );
     controls.enableDamping = true;
     controls.dampingFactor = 0.9;
@@ -47,7 +46,6 @@ var resetScene = function() {
     }
 }
 function display(buckets) {
-    console.log("display will now reset scene");
     resetScene();
     for (var i = 0; i < buckets.length; i++)
     {
@@ -83,21 +81,17 @@ function display(buckets) {
 }
 
 function onWindowResize() {
-    //windowHalfX = window.innerWidth / 2;
-    //windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
 function animate() {
-    //console.log("animate");
     requestAnimationFrame( animate );
     //stats.update();
     controls.update();
     render();
 }
 function render() {
-    //console.log("render");
     renderer.render( scene, camera );
 }
