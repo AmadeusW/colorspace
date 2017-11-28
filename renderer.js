@@ -30,7 +30,7 @@ function init() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.9;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.5;
+    controls.autoRotateSpeed = -1;
     controls.maxDistance = 20;
 
     window.addEventListener( 'resize', onWindowResize, false );
