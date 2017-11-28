@@ -1,5 +1,4 @@
 window.onload = function(e) {
-    console.log("onload");
     document.getElementById("okbutton").onclick = function() {
         var url = document.getElementById('urlInput').value;
         loadImage(url);
@@ -7,6 +6,7 @@ window.onload = function(e) {
     // renderer.js:
     init();
     animate();
+    // colorspace:
     loadImageFromAddress();
 }
 
@@ -60,8 +60,6 @@ var updateWindowUrl = function(url) {
     }
 }
 var loadImage = function(src) {
-    console.log("loadImage", src);
-
     lastOpenedImage = src;
     updateWindowUrl(src);
     var canvas = document.createElement('canvas');
@@ -71,7 +69,7 @@ var loadImage = function(src) {
     var image = new Image();
     image.crossOrigin = "Anonymous";
     image.onload = function(e) {
-        console.log("loaded", e, image);
+        console.log("Loaded", e, image);
         scaledWidth = image.width / Math.pow(2, downscaling);
         scaledHeight = image.height / Math.pow(2, downscaling);
         canvas.width = scaledWidth;

@@ -11,18 +11,27 @@ var darkening = true;
 function init() {
     container = document.getElementById("renderer");
     header = document.getElementById("header");
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-    scene = new THREE.Scene();
+
     renderer = new THREE.CanvasRenderer({alpha:true});
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.appendChild( renderer.domElement );
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.set(0, 6, -8)
+    camera.lookAt(new THREE.Vector3())
+
     //stats = new Stats();
     //container.appendChild( stats.dom );
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-    //
+
+    controls = new THREE.OrbitControls( camera );
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.9;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = -1;
+    controls.maxDistance = 20;
+
     window.addEventListener( 'resize', onWindowResize, false );
 }
 var PI2 = Math.PI * 2;
@@ -72,41 +81,17 @@ function display(buckets) {
 }
 
 function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
-function onDocumentMouseMove( event ) {
-    mouseX = event.clientX - windowHalfX;
-    mouseY = event.clientY - windowHalfY;
-}
-function onDocumentTouchStart( event ) {
-    if ( event.touches.length > 1 ) {
-        event.preventDefault();
-        mouseX = event.touches[ 0 ].pageX - windowHalfX;
-        mouseY = event.touches[ 0 ].pageY - windowHalfY;
-    }
-}
-function onDocumentTouchMove( event ) {
-    if ( event.touches.length == 1 ) {
-        event.preventDefault();
-        mouseX = event.touches[ 0 ].pageX - windowHalfX;
-        mouseY = event.touches[ 0 ].pageY - windowHalfY;
-    }
-}
-// TODO: figure out who's calling animate and how this got hooked up
+
 function animate() {
     requestAnimationFrame( animate );
-    render();
     //stats.update();
+    controls.update();
+    render();
 }
 function render() {
-    var coords = polarToCartesian3D(mouseX / (windowHalfX /  Math.PI), mouseY / (windowHalfY * 2 /  Math.PI), 10);
-    camera.position.x = coords.x;
-    camera.position.z = coords.y;
-    camera.position.y = coords.z;
-    camera.lookAt( scene.position );
     renderer.render( scene, camera );
 }
