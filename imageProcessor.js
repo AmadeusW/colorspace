@@ -14,8 +14,9 @@ var SIZEH = 36;
 var SIZES = 10;
 var SIZEL = 10;
 var topBucketSize = 0;
+var bottomBucketSize = 100;
 var scaledWidth, scaledHeight, renderingWidth, renderingHeight;
-var downscaling = 3;
+var downscaling = 1;
 var lastOpenedImage;
 
 var increaseQualityAndUpdate = function() {
@@ -29,10 +30,10 @@ var increaseQualityAndUpdate = function() {
 }
 
 var decreaseQualityAndUpdate = function() {
-    if (downscaling < 5)
+    if (downscaling < 2)
         downscaling++;
     else
-        downscaling = 5;
+        downscaling = 2;
 
     reloadImage();
     return downscaling;
@@ -107,5 +108,8 @@ var Record = function(buckets, r, g, b, a) {
     buckets[bucketIndex] = buckets[bucketIndex] + 1;
     if (buckets[bucketIndex] > topBucketSize) {
         topBucketSize = buckets[bucketIndex]
+    }
+    if (buckets[bucketIndex] < bottomBucketSize) {
+        bottomBucketSize = buckets[bucketIndex]
     }
 }

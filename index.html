@@ -55,15 +55,15 @@
           <div class="section">
             <p class="sectionTitle">Prominence</p>
             <button onclick="toggleRadius()" >Saturation</button>
-            <button onclick="toggleDensity()" >Density</button>
+            <button onclick="toggleDensity()" >Frequency</button>
             <button onclick="toggleScarcity()" >Scarcity</button>
           </div>
 
           <div class="section">
-              <p class="sectionTitle">Artwork dimming</p>
-              <span>{{dimming | dimmingText}}</span>
+              <p class="sectionTitle">Presentation</p>
               <button v-on:click="toggleDimming()" >Toggle</button>
-            </div>
+              <span>{{dimming | dimmingText}}</span>
+          </div>
         </div>
         
       </div>
