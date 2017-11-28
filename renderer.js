@@ -7,6 +7,8 @@ var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var darkening = true;
+var lastProcessedBuckets;
+var scaleRadius, scaleFrequent, scaleScarce;
 
 function init() {
     container = document.getElementById("renderer");
@@ -46,6 +48,7 @@ var resetScene = function() {
     }
 }
 function display(buckets) {
+    lastProcessedBuckets = buckets;
     resetScene();
     for (var i = 0; i < buckets.length; i++)
     {
@@ -59,9 +62,36 @@ function display(buckets) {
                 program: circle
             });
             particle = new THREE.Sprite( material );
-            var frequencyBasedScale = 0.1 + (buckets[i] / topBucketSize) * 0.4;
-            var hybridScale = (downscaling + 2) * 0.1 * hsl[1] + (buckets[i] / topBucketSize) * 0.5;
-            var scale = hybridScale;
+
+            var baseB = 0.02;
+            var baseA = 0.15;
+            var frequencyA = 0;
+            var frequencyB = 1;
+            var scarcityA = 0;
+            var scarcityB = 1;
+            var radiusA = 0;
+            var radiusB = 1;
+            var resolutionA = 0.3;
+            var resolutionB = 0.6;
+            if (scaleFrequent) {
+                var frequencyA = 3.7;
+                var frequencyB = 0.3;
+            }
+            if (scaleScarce) {
+                var scarcityA = 2;
+                var scarcityB = 0.2;
+            }
+            if (scaleRadius) {
+                var radiusA = 2.0;
+                var radiusB = 0.05;
+            }
+
+            var scale = baseB + baseA
+              * ( resolutionA * downscaling + resolutionB )
+              * ( radiusA * hsl[1] + radiusB )
+              * ( frequencyA * (buckets[i] / topBucketSize) + frequencyB )
+              * ( scarcityA * (bottomBucketSize / buckets[i]) + scarcityB );
+
             particle.scale.x = scale;
             particle.scale.y = scale;
             particle.scale.z = scale;
@@ -80,18 +110,29 @@ function display(buckets) {
     }
 }
 
+function toggleRadius() {
+    scaleRadius = !scaleRadius;
+    display(lastProcessedBuckets);
+}
+function toggleDensity() {
+    scaleFrequent = !scaleFrequent;
+    display(lastProcessedBuckets);
+}
+function toggleScarcity() {
+    scaleScarce = !scaleScarce;
+    display(lastProcessedBuckets);
+}
+
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
+// Called first from window.onload handler and then recursively
 function animate() {
     requestAnimationFrame( animate );
     //stats.update();
     controls.update();
-    render();
-}
-function render() {
     renderer.render( scene, camera );
 }

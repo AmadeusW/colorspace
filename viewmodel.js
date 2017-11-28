@@ -17,14 +17,14 @@ var renderSettings = new Vue({
     },
     filters: {
         stars: function(value) {
-            return "★".repeat(5-value) + "☆".repeat(value);
+            return "★".repeat(3-value) + "☆".repeat(value);
         },
         dimmingText: function(value) {
             return value ? "Dim background" : "Regular picture"
         }
     },
     data: {
-        downscaling: 3,
+        downscaling: 1,
         dimming: true
     }
 })
