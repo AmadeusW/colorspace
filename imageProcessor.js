@@ -5,8 +5,10 @@ window.onload = function(e) {
         loadImage(url);
     };
     // renderer.js:
+    console.log("onload");
     init();
     animate();
+    // colorspace:
     loadImageFromAddress();
 }
 
