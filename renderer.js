@@ -74,8 +74,8 @@ function display(buckets) {
             var resolutionA = 0.3;
             var resolutionB = 0.6;
             if (scaleFrequent) {
-                var frequencyA = 3.7;
-                var frequencyB = 0.3;
+                var frequencyA = 6;
+                var frequencyB = 0.2;
             }
             if (scaleScarce) {
                 var scarcityA = 2;
@@ -98,12 +98,12 @@ function display(buckets) {
             // angle comes from hue
             // radius comes from saturation
             // Y-position comes from lightness (and a bit from saturation)
-            var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, hsl[1] * 4);
+            var hueCoordinates = polarToCartesian(hsl[0] * 2 * Math.PI, 0.03 + hsl[1] * 4);
             
             particle.position.x = hueCoordinates.x;
             particle.position.y = -2 + hsl[2]*4.2  // Mostly based on lightness
                                     + hsl[1] * 0.8 // A little tweak from saturation, for raising disk edges
-                                    + hsl[0] * 0.5; // a little kick from hue, for raising spiral arms
+                                    + hsl[0] * 0.42; // a little kick from hue, for raising spiral arms
             particle.position.z = hueCoordinates.y;
             scene.add( particle );
         }

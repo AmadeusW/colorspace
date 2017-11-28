@@ -20,7 +20,7 @@ var renderSettings = new Vue({
             return "★".repeat(3-value) + "☆".repeat(value);
         },
         dimmingText: function(value) {
-            return value ? "Dim background" : "Regular picture"
+            return value ? "Dim background" : "Original picture"
         }
     },
     data: {
